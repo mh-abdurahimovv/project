@@ -53,7 +53,7 @@
           
           
           function createMovieList(films, parent) {
-              parent.innerHTML = "";
+              parent.innerHTML = "",
               sortFilms(films);
               
               films.forEach( (film, i) => {
@@ -64,46 +64,45 @@
                   `;
               });
           
-          }
-          
               document.querySelectorAll('.delete').forEach((btn, i) => {
                   btn.addEventListener('click', () => {
-                      btn.parentElement.remove()
-                      movieDB.movies.splice(1); 
+                      btn.parentElement.remove();
+                      movieDB.movies.splice(i, 1); 
                       createMovieList(films, parent)
-                  })
-              })
+                  }); 
+              });
+
+            }    
           
-          deleteAdv();
+          deleteAdv(adv);
           changes();
           createMovieList(movieDB.movies, movieList)
           
           
           
           
-          const input = document.querySelector('.adding__input')
-                addForm = document.querySelector('form.add')
-                checkbox = addForm.querySelector('[type="checkbox"]');  
-                buttonProve = document.querySelector('.prove')
+          const input = document.querySelector('.adding__input'),
+                addForm = document.querySelector('form.add'),
+                checkbox = addForm.querySelector('[type="checkbox"]'),
+                buttonProve = document.querySelector('.prove');
                 addForm.addEventListener('submit', (event)=> {
                   event.preventDefault()
           
-                  const newFilm = input.value;
-                        favourite = checkbox.checked;
+                  let newFilm = input.value; 
+                  const favourite = checkbox.checked;
            
                   if (newFilm) {
                       
                       if (newFilm.length > 21) {
                           newFilm = `${newFilm.substring(0, 22)}...`
-                      }
+                      };
           
                       if (favourite) {
                           console.log("Добавляем любимый фильм")
-                      }
-                      movieDB.movies.push(newFilm);
-                      sortFilms(movieDB.movies);     
-                      createMovieList(movieDB.movies, movieList)
-          
+                      };
+                      movieDB.movies.push(newFilm),
+                      sortFilms(movieDB.movies),     
+                      createMovieList(movieDB.movies, movieList);          
                   } 
           
           
